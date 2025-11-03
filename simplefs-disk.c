@@ -30,8 +30,11 @@ void simplefs_formatDisk(){
 	    Format filesystem and initialise superblock and inodes with default values
 	*/
 
-    FILE* fp;
-    fp = fopen("simplefs", "w+");
+    FILE* fp = fopen("simplefs_disk", "w+");
+    if (fp == NULL) {
+        perror("Error opening/creating disk file");
+        exit(EXIT_FAILURE);
+    }
     DISK_FD = fileno(fp);
 
     // Setting up superblock
